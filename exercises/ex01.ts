@@ -20,7 +20,11 @@ function printInfoOrCalculate(
 		return param1;
 	}
 
-	if (typeof param1 === "number" && typeof param2 === "number" && param3) {
+	if (typeof param1 === "number") {
+		if (param2 === undefined || param3 === undefined) {
+			throw new Error("Invalid input");
+		}
+
 		switch (param3) {
 			case "+":
 				return param1 + param2;
@@ -31,11 +35,11 @@ function printInfoOrCalculate(
 			case "/":
 				return param1 / param2;
 			default:
-				return "Invalid input";
+				return param1;
 		}
 	}
 
-	return "Missing parameters for calculation";
+	return param1;
 }
 
 // Tests
