@@ -1,17 +1,33 @@
-// Create a function that receives an object (create an interface) that represents a room with the properties size, type, viewToSea, hasAC, price.
+// TODO Create a function that receives an object (create an interface)
+// that represents a room with the properties size, type, viewToSea, hasAC, price.
+
 // The function need to return a message with the configuration of the room that is in the param.
 // If the room doesn't provide price, you need to define a default value in the param of the function.
 
-const getRoomConfiguration = () => {
-  // Code here
+interface Room {
+	size: string;
+	type: string;
+	viewToSea: boolean;
+	hasAC: boolean;
+	price?: number;
+}
+
+const getRoomConfiguration = (room: Room, price: number = 100): string => {
+	const finalPrice = room.price || price;
+	return `Room Configuration:
+    - Size: ${room.size}
+    - Type: ${room.type}
+    - View to Sea: ${room.viewToSea ? "Yes" : "No"}
+    - Has AC: ${room.hasAC ? "Yes" : "No"}
+    - Price: CAD ${finalPrice}`;
 };
 
 //Tests
 const room1: Room = {
-  size: "Small",
-  type: "Economy",
-  viewToSea: false,
-  hasAC: false,
+	size: "Small",
+	type: "Economy",
+	viewToSea: false,
+	hasAC: false,
 };
 console.log(getRoomConfiguration(room1));
 
@@ -24,11 +40,11 @@ console.log(getRoomConfiguration(room1));
 //     - Price: CAD 100
 
 const room2: Room = {
-  size: "Medium",
-  type: "Suite",
-  viewToSea: true,
-  hasAC: true,
-  price: 300,
+	size: "Medium",
+	type: "Suite",
+	viewToSea: true,
+	hasAC: true,
+	price: 300,
 };
 console.log(getRoomConfiguration(room2));
 
@@ -41,11 +57,11 @@ console.log(getRoomConfiguration(room2));
 //     - Price: CAD 300
 
 const room3: Room = {
-  size: "Large",
-  type: "Deluxe",
-  viewToSea: true,
-  hasAC: true,
-  price: 500,
+	size: "Large",
+	type: "Deluxe",
+	viewToSea: true,
+	hasAC: true,
+	price: 500,
 };
 console.log(getRoomConfiguration(room3));
 
